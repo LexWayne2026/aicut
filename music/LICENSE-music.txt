@@ -1,0 +1,6 @@
+All tracks: Holizna — "Happy Lo-Fi (Lofi Collection)"
+Source: https://opengameart.org/content/happy-lo-fi-lofi-collection
+License: CC0 1.0 (public domain) — https://creativecommons.org/publicdomain/zero/1.0/
+Author's note on the page: "This music is public domain Cc0, so use it how you want!"
+clouds.mp3 = "Clouds", blue-skies.mp3 = "Blue Skies", new-shoes.mp3 = "New Shoes", puppy-love.mp3 = "Puppy Love".
+Attribution not required; "Music: Holizna (CC0)" is a courtesy.

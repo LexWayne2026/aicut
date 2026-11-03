@@ -1,0 +1,5 @@
+skia-python>=87.6
+numpy>=1.24
+# only for tools/ (new projects): probe face crop + transcription
+# opencv-python-headless>=4.8,<5
+# faster-whisper>=1.0

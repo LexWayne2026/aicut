@@ -8,6 +8,27 @@ Output resolution and aspect ratio follow the source clip (3:4, 9:16, 4:5, 1:1, 
 from what the speaker actually says. The engine is plain Python + [skia](https://kyamagu.github.io/skia-python/) +
 ffmpeg, with each frame a pure function of time, so renders are deterministic and can be split across machines.
 
+## What it looks like
+
+The same 35-second script in each template. The presenter here is a drawn stand-in from [`demo/`](demo/); in your
+videos it is your own live footage.
+
+| Template 1: Whiteboard | Template 2: Pop Card | Template 3: Soft Glass |
+|:-:|:-:|:-:|
+| <img src="docs/whiteboard.gif" width="270" alt="Whiteboard template demo"> | <img src="docs/popcard.gif" width="270" alt="Pop Card template demo"> | <img src="docs/softglass.gif" width="270" alt="Soft Glass template demo"> |
+| [Full clip with sound](docs/whiteboard-demo.mp4) | [Full clip with sound](docs/popcard-demo.mp4) | [Full clip with sound](docs/softglass-demo.mp4) |
+
+**Template 1: Whiteboard**: a title over the presenter, a price comparison, capsule rows with a counter and stamp, form cards.
+![Whiteboard stills](docs/whiteboard-stills.jpg)
+
+**Template 2: Pop Card**: bottles whipping in, big numbers on a colour sheet, bouncing capsules, a slammed form grid.
+![Pop Card stills](docs/popcard-stills.jpg)
+
+**Template 3: Soft Glass**: glass rows over the video, a gradient odometer beside the hero card, a bar chart, form tiles.
+![Soft Glass stills](docs/softglass-stills.jpg)
+
+The demo script is made up for illustration (300 mg × 3 = 900 mg is arithmetic, not health advice).
+
 ## Three looks
 
 | | Template 1: Whiteboard | Template 2: Pop Card | Template 3: Soft Glass |
@@ -80,6 +101,13 @@ PY tools/package.py projects/demo                                       # render
 Scenes are Python functions in `projects/<name>/scenes.py`. Timing cues live in `timeline.py` and are looked up
 from the transcript with `at("phrase", "word")`.
 
+To try the engine with no clip at all, render the demo:
+
+```bash
+PY demo/make_demo.py                                       # stand-in presenter clip + transcript
+PY wbx/render.py --project demo/softglass --preview        # or demo/popcard, demo/whiteboard
+```
+
 ## What's in the repo
 
 | Path | Contents |
@@ -89,6 +117,8 @@ from the transcript with `at("phrase", "word")`.
 | `tools/` | New project, probe (face-aware crop, silences), transcription, contact sheets, packaging, self-test |
 | `references/` | Style rules and the API for each template, plus storyboarding and animation principles |
 | `templates/` | Starter projects per template and the render-kit launchers |
+| `demo/` | Three complete demo projects on a made-up script, with a drawn stand-in presenter. `make_gallery.py` rebuilds `docs/` |
+| `docs/` | The README gallery: GIFs, stills and full demo clips |
 | `fonts/`, `music/` | Bundled fonts and Template 1 music, all freely licensed (below) |
 
 ## Licences

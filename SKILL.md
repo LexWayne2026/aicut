@@ -22,8 +22,9 @@ The user picks when calling, e.g. "aicut Template 2". If they name none, ask whi
 | Example | `examples/otc/` | `examples/popcard/` | `examples/softglass/` |
 | Starter | `templates/project/` | `templates/project-popcard/` | `templates/project-softglass/` |
 
-`examples/` exists only on the author's machines (it quotes a private clip). Where it is missing, work from the
-starter, the template's reference and the helpers in its `wbx/` module.
+`examples/` exists only on the author's machines (it quotes a private clip). `demo/whiteboard`, `demo/popcard` and
+`demo/softglass` are public, complete projects on one made-up script (`python demo/make_demo.py` builds their stand-in
+clip and data); copy patterns from them when `examples/` is missing.
 
 Read the chosen template's reference before designing anything; it holds the visual rules and the user's past
 feedback. `references/storyboarding.md` covers pacing and animation principles for both. Never mix

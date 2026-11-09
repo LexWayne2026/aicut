@@ -57,6 +57,8 @@ falls back to a hard link or a copy.
 2. **Fix the transcript with the user.** Show `transcript.txt`; ask them to confirm terms. ASR errors
    (e.g. 算是补充剂 → 膳食补充剂) must be corrected in `captions.json` (both `zh` and the unit texts)
    before storyboarding — on-screen text must be what the speaker actually said.
+   Then align caption edges to the real audio (Whisper often starts lines early after a pause):
+   `python KIT/tools/check_sync.py P --fix` (backs up `captions.json`; PASS = starts within ±3 frames).
 3. **Storyboard** in `timeline.py` (cues via `at()`, presenter states, caption mutes, sfx events, music)
    and `scenes.py` (scene functions + `SCENES` registry). `timeline.TEMPLATE` selects the look. Follow `references/storyboarding.md`:
    one idea per scene, every beat on a word cue, presenter full-frame for hooks/verdicts/ending. Template 1 uses
@@ -71,12 +73,16 @@ falls back to a hard link or a copy.
    render every 0.1 s at tiny scale (see examples) to catch exceptions before a long render.
 5. **Preview**: `python KIT/wbx/render.py --project P --preview` (half resolution, 30 fps, with audio).
    Verify loudness (`ffmpeg -i out.mp4 -af ebur128=peak=true -f null -` → about -14 LUFS, peak ≤ -1 dB)
-   and a contact sheet of the video (`tools/sheet.py P --video out/<file>.mp4`). Send the preview to the user.
+   and a contact sheet of the video (`tools/sheet.py P --video out/<file>.mp4`). Then run
+   `python KIT/tools/qc.py P` (size/aspect, A/V duration, loudness, peak, render newer than edits, sfx density,
+   presenter-hidden stretch, caption sync → `out/qc.md`). Send the preview with the QC numbers; report any ✗ as it is.
 6. **Render kit**: `python KIT/tools/package.py P` → `<name>-render-kit.zip` (engine, fonts, music, project,
    source clip). Do NOT render the final master locally unless asked; the user renders on a faster machine
-   (`python wbx/parallel.py --project projects/<name>`, optional `--mb 6` motion blur).
+   (`python wbx/parallel.py --project projects/<name>`, optional `--mb 6` motion blur). It restarts a stalled
+   segment (no progress for 5 min) up to 3 times and timestamps everything in `out/render-log.md`; when a render
+   "hangs", read that log and the file times before guessing a cause.
 
-Iterate on feedback by editing scenes/timeline and re-running steps 4–6. Keep feedback-derived rules in
+Iterate on feedback by editing only the scenes the feedback names, then re-running steps 4–6. Keep feedback-derived rules in
 the chosen template's reference up to date when the user states a new preference.
 
 ## Adaptive output

@@ -114,7 +114,7 @@ PY wbx/render.py --project demo/softglass --preview        # or demo/popcard, de
 |---|---|
 | `SKILL.md` | The skill instructions Claude follows |
 | `wbx/` | Engine: Template 1 (`core`, `icons`, `components`), Template 2 (`popcard`), Template 3 (`softglass`), layout, audio, parallel render |
-| `tools/` | New project, probe (face-aware crop, silences), transcription, contact sheets, packaging, self-test |
+| `tools/` | New project, probe (face-aware crop, silences), transcription, caption sync check/fix, delivery QC, contact sheets, packaging, self-test |
 | `references/` | Style rules and the API for each template, plus storyboarding and animation principles |
 | `templates/` | Starter projects per template and the render-kit launchers |
 | `demo/` | Three complete demo projects on a made-up script, with a drawn stand-in presenter. `make_gallery.py` rebuilds `docs/` |
@@ -134,3 +134,14 @@ aicut's code and docs are under the [MIT licence](LICENSE). Bundled assets keep 
   Each licence file is in `fonts/`.
 - **Music:** Holizna, *Happy Lo-Fi*, from [OpenGameArt](https://opengameart.org/content/happy-lo-fi-lofi-collection), CC0 public domain.
 - **Animation principles:** adapted in concept from [remotion-dev/skills](https://github.com/remotion-dev/skills). No Remotion code is used.
+- **Caption sync check, QC list, render watchdog and comfort rules:** `tools/check_sync.py` adapts the waveform
+  onset check, and `tools/qc.py`, the `wbx/parallel.py` watchdog and the measured rules in
+  `references/storyboarding.md` follow the methods of
+  [paxon-yang/talking-video-skills](https://github.com/paxon-yang/talking-video-skills), MIT licence,
+  "Copyright (c) 2026". Its notice: *Permission is hereby granted, free of charge,
+  to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in
+  the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions: The above copyright notice and this permission notice
+  shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS",
+  WITHOUT WARRANTY OF ANY KIND.*
